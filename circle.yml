@@ -1,6 +1,6 @@
 machine:
   scala:
-    - 2.11.8
+    version: 2.11.8
   java:
     version: oraclejdk7
   environment:
