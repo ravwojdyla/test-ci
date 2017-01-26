@@ -81,6 +81,7 @@ lazy val root: Project = Project(
 ).settings(
   commonSettings  ++ noPublishSettings,
   libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "3.0.1"
+    "org.scalatest" %% "scalatest" % "3.0.1",
+    "org.scala-lang" % "scala-compiler" % scalaVersion.value
   )
 )
