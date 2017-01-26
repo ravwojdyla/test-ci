@@ -14,7 +14,7 @@ dependencies:
     - find ~/.sbt -name "*.lock" | xargs -r rm
     - find ~/.ivy2 -name "ivydata-*.properties" | xargs -r rm
   override:
-    - sbt "coverage +test:compile"
+    - sbt "+test:compile"
 
 test:
   override:
