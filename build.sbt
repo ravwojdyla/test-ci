@@ -83,6 +83,7 @@ lazy val root: Project = Project(
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.0.1",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value
+    "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+    "org.scala-lang" % "scala-library" % scalaVersion.value
   )
 )
