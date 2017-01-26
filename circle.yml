@@ -16,4 +16,4 @@ dependencies:
 
 test:
   override:
-    - sbt -J-XX:ReservedCodeCacheSize=256m clean scalastyle coverage test coverageReport coverageAggregate
+    - sbt -J-XX:ReservedCodeCacheSize=256m clean scalastyle coverage +test coverageReport coverageAggregate
