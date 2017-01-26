@@ -3,6 +3,7 @@ machine:
     version: oraclejdk8
   environment:
     SBT_VERSION: 0.13.13
+    SBT_OPTS: "-XX:ReservedCodeCacheSize=256m"
 
 dependencies:
   cache_directories:
@@ -15,5 +16,10 @@ dependencies:
     - sbt coverage +test:compile
 
 test:
+  pre:
+    - sbt clean scalastyle
   override:
-    - sbt -J-XX:ReservedCodeCacheSize=256m clean scalastyle coverage +test coverageReport coverageAggregate
+    - case $CIRCLE_NODE_INDEX in 0) SCALA_VERSION=2.10.6 ;; 1) SCALA_VERSION=2.11.8 ;; esac; echo "SCALA_VERSION=$SCALA_VERSION"; sbt ++SCALA_VERSION coverage test:
+      parallel: true
+  post:
+    - sbt coverageReport coverageAggregate
