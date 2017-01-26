@@ -22,6 +22,6 @@ test:
     - sbt clean scalastyle
   override:
     - case $CIRCLE_NODE_INDEX in 0) SCALA_VERSION="2.10.6";; 1) SCALA_VERSION="2.11.8";; esac; echo "SCALA_VERSION=$SCALA_VERSION"; sbt ++SCALA_VERSION coverage test:
-      parallel: true
+        parallel: true
   post:
     - sbt coverageReport coverageAggregate
