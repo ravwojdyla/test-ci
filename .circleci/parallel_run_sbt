@@ -1,3 +1,3 @@
 #!/bin/bash
 
-case $CIRCLE_NODE_INDEX in 0) export CI_SCALA_VERSION="2.10.6";; 1) export CI_SCALA_VERSION="2.11.8";; esac; echo "INFO: scala version is `$CI_SCALA_VERSION`"; bash -c "sbt ++$CI_SCALA_VERSION $1"
+case $CIRCLE_NODE_INDEX in 0) export CI_SCALA_VERSION="2.10.6";; 1) export CI_SCALA_VERSION="2.11.8";; esac; echo "INFO: scala version is $CI_SCALA_VERSION"; bash -c "sbt ++$CI_SCALA_VERSION $1"
