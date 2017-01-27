@@ -4,7 +4,6 @@ machine:
   environment:
     SBT_VERSION: 0.13.13
     SBT_OPTS: "-XX:ReservedCodeCacheSize=256m"
-    SCALA_VERSIONS: "2.10.6, 2.11.8"
 
 dependencies:
   cache_directories:
@@ -16,12 +15,12 @@ dependencies:
     - find ~/.sbt -name "*.lock" | xargs -r rm
     - find ~/.ivy2 -name "ivydata-*.properties" | xargs -r rm
   override:
-    - ./.circleci/parallel_run_scala 'sbt ++$CI_SCALA_VERSION coverage test:compile':
+    - ./.circleci/parallel_run_scala "sbt ++'$CI_SCALA_VERSION' coverage test:compile":
         parallel: true
 
 test:
   override:
-    - ./.circleci/parallel_run_scala 'sbt ++$CI_SCALA_VERSION clean scalastyle coverage test':
+    - ./.circleci/parallel_run_scala "sbt ++'$CI_SCALA_VERSION' clean scalastyle coverage test":
         parallel: true
   post:
     - sbt coverageReport coverageAggregate
