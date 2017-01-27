@@ -15,14 +15,14 @@ dependencies:
     - find ~/.sbt -name "*.lock" | xargs -r rm
     - find ~/.ivy2 -name "ivydata-*.properties" | xargs -r rm
   override:
-    - ./.circleci/parallel_run_scala 'sbt ++$CI_SCALA_VERSION coverage test:compile':
+    - ./.circleci/parallel_run_sbt 'coverage test:compile':
         parallel: true
 
 test:
   override:
     - if [ "$CI_PULL_REQUEST" = "" ]; then
         echo "NON Pull request!!"
-        ./.circleci/parallel_run_scala 'sbt ++$CI_SCALA_VERSION clean scalastyle coverage test'
+        ./.circleci/parallel_run_sbt 'clean scalastyle coverage test'
       else
         echo "Pull request!!"
       fi:
