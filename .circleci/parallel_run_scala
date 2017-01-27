@@ -1,0 +1,3 @@
+#!/bin/bash
+
+case $CIRCLE_NODE_INDEX in 0) CI_SCALA_VERSION="2.10.6";; 1) CI_SCALA_VERSION="2.11.8";; esac; echo "SCALA_VERSION=$CI_SCALA_VERSION"; bash -c "$1"

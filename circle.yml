@@ -16,12 +16,12 @@ dependencies:
     - find ~/.sbt -name "*.lock" | xargs -r rm
     - find ~/.ivy2 -name "ivydata-*.properties" | xargs -r rm
   override:
-    - case $CIRCLE_NODE_INDEX in 0) CI_SCALA_VERSION="2.10.6";; 1) CI_SCALA_VERSION="2.11.8";; esac; echo "SCALA_VERSION=$CI_SCALA_VERSION"; sbt ++$CI_SCALA_VERSION coverage test:compile
+    - ./.circleci/.parallel_run_scala 'sbt ++$CI_SCALA_VERSION coverage test:compile'
         parallel: true
 
 test:
   override:
-    - case $CIRCLE_NODE_INDEX in 0) CI_SCALA_VERSION="2.10.6";; 1) CI_SCALA_VERSION="2.11.8";; esac; echo "SCALA_VERSION=$CI_SCALA_VERSION"; sbt ++$CI_SCALA_VERSION clean scalastyle coverage test:
+    - ./.circleci/.parallel_run_scala 'sbt ++$CI_SCALA_VERSION clean scalastyle coverage test'
         parallel: true
   post:
     - sbt coverageReport coverageAggregate
