@@ -20,12 +20,7 @@ dependencies:
 
 test:
   override:
-    - if [ "$CI_PULL_REQUEST" = "" ]; then
-        echo "NON Pull request!!"
-        ./.circleci/parallel_run_sbt 'clean scalastyle coverage test'
-      else
-        echo "Pull request!!"
-      fi:
+    - if [ "$CI_PULL_REQUEST" = "" ]; then echo "NON Pull request!!"; ./.circleci/parallel_run_sbt 'clean scalastyle coverage test'; else echo "Pull request!!"; fi:
         parallel: true
   post:
     - sbt coverageReport coverageAggregate
